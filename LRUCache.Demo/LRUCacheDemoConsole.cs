@@ -20,6 +20,10 @@ namespace LRUCache.Demo
             Console.WriteLine(lruCache.GetItem(2).Value);
 
             lruCache.Insert(5, 60);
+            lruCache.Insert(6, 70);
+            lruCache.Insert(7, 80);
+            lruCache.Insert(8, 90);
+            lruCache.Insert(9, 100);
         }
     }
 }

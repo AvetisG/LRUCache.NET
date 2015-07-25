@@ -51,7 +51,12 @@ namespace LRUCache.Implementation
 
         private void RemoveLeastRecentlyUsed()
         {
+            var key = _LRUCache.FirstOrDefault(l => l.Value.Equals(tail)).Key;
+
+            _LRUCache.Remove(key);
+
             tail.Previous.Next = null;
+            tail = tail.Previous;
         }
 
         private void MakeMostRecentlyUsed(Node<V> foundItem)
