@@ -16,5 +16,5 @@ lruCache.Insert(2, 30);
 lruCache.Insert(3, 40);
 lruCache.Insert(4, 50);
 
-var item = lruCache.GetItem(0).Value;```
+var item = lruCache.GetItem(0).Value;
 
