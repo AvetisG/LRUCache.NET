@@ -1,4 +1,7 @@
-# LRUCache.NET
+# LRUCache.NET [![Build Status][2]][1]
+
+  [1]: https://ci.appveyor.com/project/AvetisG/lrucache-net
+  [2]: https://ci.appveyor.com/api/projects/status/x8kr2fcyk8cv30av?svg=true
 
 Simple LRUCache implementation in C#. Demo project included for easy and convenient testing.
 
