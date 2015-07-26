@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LRUCache.Implementation
@@ -47,6 +48,26 @@ namespace LRUCache.Implementation
             MakeMostRecentlyUsed(foundItem);
 
             return foundItem;
+        }
+
+        public int Size()
+        {
+            return _LRUCache.Count();
+        }
+
+        public string CacheFeed()
+        {
+            var headReference = head; 
+            
+            List<string> items = new List<string>();
+
+            while (headReference != null)
+            {
+                items.Add(String.Format("[V: {0}]", headReference.Data));
+                headReference = headReference.Next;
+            }
+
+            return String.Join(",", items);
         }
 
         private void RemoveLeastRecentlyUsed()

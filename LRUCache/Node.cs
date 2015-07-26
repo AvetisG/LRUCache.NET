@@ -1,14 +1,14 @@
 ﻿namespace LRUCache.Implementation
 {
-    public class Node<V>
+    public class Node<D>
     {
-        public V Value { get; private set; }
-        public Node<V> Previous { get; set; }
-        public Node<V> Next { get; set; }
+        public D Data { get; private set; }
+        public Node<D> Previous { get; set; }
+        public Node<D> Next { get; set; }
 
-        public Node(V value)
+        public Node(D data)
         {
-            Value = value;
+            Data = data;
         }
     }
 }
