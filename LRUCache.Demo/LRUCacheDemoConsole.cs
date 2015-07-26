@@ -9,18 +9,22 @@ namespace LRUCache.Demo
         {
             LRUCache<int, int> lruCache = new LRUCache<int, int>(5);
 
+            Console.WriteLine(lruCache.Size());
+
             lruCache.Insert(0, 10);
             lruCache.Insert(1, 20);
             lruCache.Insert(2, 30);
             lruCache.Insert(3, 40);
             lruCache.Insert(4, 50);
 
+            Console.WriteLine(lruCache.Size());
             Console.WriteLine(lruCache.CacheFeed());
 
             lruCache.GetItem(0);
             lruCache.GetItem(1);
             lruCache.GetItem(2);
 
+            Console.WriteLine(lruCache.Size());
             Console.WriteLine(lruCache.CacheFeed());
 
             lruCache.Insert(5, 60);
@@ -29,6 +33,7 @@ namespace LRUCache.Demo
             lruCache.Insert(8, 90);
             lruCache.Insert(9, 100);
 
+            Console.WriteLine(lruCache.Size());
             Console.WriteLine(lruCache.CacheFeed());
         }
     }
