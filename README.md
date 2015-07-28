@@ -7,7 +7,9 @@ Simple LRUCache implementation in C#. Demo project included for easy and conveni
 
 **WARNING:** It is not not thread-safe yet, but will be in the future iterations so please be cautious of that.
 
-If you would like to use a data structure similar to LRU cache that is thread-safe for the time being then please look into [MemoryCache Class](https://msdn.microsoft.com/en-us/library/system.runtime.caching.memorycache%28v=vs.110%29.aspx). You can [read here](http://stackoverflow.com/questions/9653696/default-memory-cache-with-lru-policy) about how to make the MemoryCache behave like an LRU cache.
+If you would like to use a data structure similar to LRU cache that is thread-safe for the time being then please look into [MemoryCache Class](https://msdn.microsoft.com/en-us/library/system.runtime.caching.memorycache%28v=vs.110%29.aspx). 
+
+You can [read here](http://stackoverflow.com/questions/9653696/default-memory-cache-with-lru-policy) about how to make the MemoryCache behave like an LRUCache.
 
 Below is a snippet for a simple usage case:
 
