@@ -1,5 +1,5 @@
 # LRUCache.NET [![Build Status][2]][1]
-### O(1) lookup time - O(1) insertion time - O(1) deletion time
+### O(1) lookup time O(1) insertion time O(1) deletion time
 
   [1]: https://ci.appveyor.com/project/AvetisG/lrucache-net
   [2]: https://ci.appveyor.com/api/projects/status/x8kr2fcyk8cv30av?svg=true
