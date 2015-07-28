@@ -1,9 +1,10 @@
 # LRUCache.NET [![Build Status][2]][1]
+### O(1) lookup time **|** O(1) insertion time **|** O(1) deletion time
 
   [1]: https://ci.appveyor.com/project/AvetisG/lrucache-net
   [2]: https://ci.appveyor.com/api/projects/status/x8kr2fcyk8cv30av?svg=true
 
-Simple LRUCache implementation in C#. Demo project included for easy and convenient testing.
+Simple LRUCache implementation in C#. However, not thread-safe yet, but will be in the future iterations
 
 **WARNING:** It is not not thread-safe yet, but will be in the future iterations so please be cautious of that.
 
