@@ -12,7 +12,7 @@ If you would like to use a data structure similar to LRU cache that is thread-sa
 
 You can [check it out here](http://stackoverflow.com/questions/9653696/default-memory-cache-with-lru-policy) about how to make the MemoryCache behave like an LRUCache.
 
-Below is a snippet for a simple usage case:
+Below is a short snippet for a simple usage case:
 
 ```C#
 LRUCache<int, int> lruCache = new LRUCache<int, int>(5);
