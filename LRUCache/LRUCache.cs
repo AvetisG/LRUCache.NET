@@ -22,9 +22,13 @@ namespace LRUCache.Implementation
             if (_LRUCache.ContainsKey(key))
             {
                 MakeMostRecentlyUsed(_LRUCache[key]);
+                return;
             }
 
-            if (_LRUCache.Count >= _maxCapacity) RemoveLeastRecentlyUsed();
+            if (_LRUCache.Count >= _maxCapacity)
+            {
+                RemoveLeastRecentlyUsed();
+            }
 
             Node<V, K> insertedNode = new Node<V, K>(value, key);
 
@@ -33,7 +37,10 @@ namespace LRUCache.Implementation
                 _head = insertedNode;
                 _tail = _head;
             }
-            else MakeMostRecentlyUsed(insertedNode);
+            else
+            {
+                MakeMostRecentlyUsed(insertedNode);
+            }
 
             _LRUCache.Add(key, insertedNode);
         }

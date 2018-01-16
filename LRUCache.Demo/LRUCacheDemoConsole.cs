@@ -32,9 +32,12 @@ namespace LRUCache.Demo
             lruCache.Insert(7, 80);
             lruCache.Insert(8, 90);
             lruCache.Insert(9, 100);
+            lruCache.Insert(6, 70);
 
             Console.WriteLine(lruCache.Size());
             Console.WriteLine(lruCache.CacheFeed());
+            int a = 0;
+
         }
     }
 }
