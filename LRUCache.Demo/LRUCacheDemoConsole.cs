@@ -11,28 +11,28 @@ namespace LRUCache.Demo
 
             Console.WriteLine(lruCache.Size());
 
-            lruCache.Insert(0, 10);
-            lruCache.Insert(1, 20);
-            lruCache.Insert(2, 30);
-            lruCache.Insert(3, 40);
-            lruCache.Insert(4, 50);
+            lruCache.Add(0, 10);
+            lruCache.Add(1, 20);
+            lruCache.Add(2, 30);
+            lruCache.Add(3, 40);
+            lruCache.Add(4, 50);
 
             Console.WriteLine(lruCache.Size());
             Console.WriteLine(lruCache.CacheFeed());
 
-            lruCache.GetItem(0);
-            lruCache.GetItem(1);
-            lruCache.GetItem(2);
+            lruCache.Get(0);
+            lruCache.Get(1);
+            lruCache.Get(2);
 
             Console.WriteLine(lruCache.Size());
             Console.WriteLine(lruCache.CacheFeed());
 
-            lruCache.Insert(5, 60);
-            lruCache.Insert(6, 70);
-            lruCache.Insert(7, 80);
-            lruCache.Insert(8, 90);
-            lruCache.Insert(9, 100);
-            lruCache.Insert(6, 70);
+            lruCache.Add(5, 60);
+            lruCache.Add(6, 70);
+            lruCache.Add(7, 80);
+            lruCache.Add(8, 90);
+            lruCache.Add(9, 100);
+            lruCache.Add(6, 10);
 
             Console.WriteLine(lruCache.Size());
             Console.WriteLine(lruCache.CacheFeed());

@@ -10,17 +10,19 @@ namespace LRUCache.Implementation
         private readonly Dictionary<K, Node<V, K>> _LRUCache;
         private Node<V, K> _head = null;
         private Node<V, K> _tail = null;
+        private Action<K, V> _OnRemoveLast;
 
-        public LRUCache(int argMaxCapacity)
+        public LRUCache(int argMaxCapacity, Action<K, V> onRemoveLastAction)
         {
             _maxCapacity = argMaxCapacity;
             _LRUCache = new Dictionary<K, Node<V, K>>();
+            _OnRemoveLast = onRemoveLastAction;
         }
-
-        public void Insert(K key, V value)
+        public void Add(K key, V value)
         {
             if (_LRUCache.ContainsKey(key))
             {
+                _LRUCache[key].Data = value;
                 MakeMostRecentlyUsed(_LRUCache[key]);
                 return;
             }
@@ -44,8 +46,7 @@ namespace LRUCache.Implementation
 
             _LRUCache.Add(key, insertedNode);
         }
-
-        public Node<V, K> GetItem(K key)
+        public Node<V, K> Get(K key)
         {
             if (!_LRUCache.ContainsKey(key)) return null;
 
@@ -53,12 +54,10 @@ namespace LRUCache.Implementation
 
             return _LRUCache[key];
         }
-
         public int Size()
         {
             return _LRUCache.Count();
         }
-
         public string CacheFeed()
         {
             var headReference = _head; 
@@ -67,20 +66,24 @@ namespace LRUCache.Implementation
 
             while (headReference != null)
             {
-                items.Add(String.Format("[V: {0}]", headReference.Data));
+                items.Add(String.Format("[K: {0} V: {1}]", headReference.Key,headReference.Data));
                 headReference = headReference.Next;
             }
 
             return String.Join(",", items);
         }
-
         private void RemoveLeastRecentlyUsed()
         {
             _LRUCache.Remove(_tail.Key);
+            var tmpNode = _tail;
             _tail.Previous.Next = null;
             _tail = _tail.Previous;
-        }
 
+            if (null != _OnRemoveLast)
+            {
+                _OnRemoveLast(tmpNode.Key,tmpNode.Data);
+            }
+        }
         private void MakeMostRecentlyUsed(Node<V, K> foundItem)
         {
             // Newly inserted item bring to the top
