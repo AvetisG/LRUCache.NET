@@ -6,6 +6,7 @@ namespace LRUCache.Implementation
 {
     public class LRUCache<K, V>
     {
+        private object LocalLock = new object();
         private readonly int _maxCapacity = 0;
         private readonly Dictionary<K, Node<V, K>> _LRUCache;
         private Node<V, K> _head = null;
@@ -19,37 +20,51 @@ namespace LRUCache.Implementation
 
         public void Insert(K key, V value)
         {
-            if (_LRUCache.ContainsKey(key))
+            lock (LocalLock)
             {
-                MakeMostRecentlyUsed(_LRUCache[key]);
+                if (_LRUCache.ContainsKey(key))
+                {
+                    if (_LRUCache[key] != _head)
+                    {
+                        MakeMostRecentlyUsed(_LRUCache[key]);
+                    }
+                }
+                else
+                {
+                    if (_LRUCache.Count >= _maxCapacity) RemoveLeastRecentlyUsed();
+
+                    Node<V, K> insertedNode = new Node<V, K>(value, key);
+
+                    if (_head == null)
+                    {
+                        _head = insertedNode;
+                        _tail = _head;
+                    }
+                    else MakeMostRecentlyUsed(insertedNode);
+
+                    _LRUCache.Add(key, insertedNode);
+                }
             }
-
-            if (_LRUCache.Count >= _maxCapacity) RemoveLeastRecentlyUsed();
-
-            Node<V, K> insertedNode = new Node<V, K>(value, key);
-
-            if (_head == null)
-            {
-                _head = insertedNode;
-                _tail = _head;
-            }
-            else MakeMostRecentlyUsed(insertedNode);
-
-            _LRUCache.Add(key, insertedNode);
         }
 
         public Node<V, K> GetItem(K key)
         {
-            if (!_LRUCache.ContainsKey(key)) return null;
+            lock (LocalLock)
+            {
+                if (!_LRUCache.ContainsKey(key)) return null;
 
-            MakeMostRecentlyUsed(_LRUCache[key]);
+                MakeMostRecentlyUsed(_LRUCache[key]);
 
-            return _LRUCache[key];
+                return _LRUCache[key];
+            }
         }
 
         public int Size()
         {
-            return _LRUCache.Count();
+            lock (LocalLock)
+            {
+                return _LRUCache.Count();
+            }
         }
 
         public string CacheFeed()
