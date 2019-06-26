@@ -24,10 +24,7 @@ namespace LRUCache.Implementation
             {
                 if (_LRUCache.ContainsKey(key))
                 {
-                    if (_LRUCache[key] != _head)
-                    {
-                        MakeMostRecentlyUsed(_LRUCache[key]);
-                    }
+                    MakeMostRecentlyUsed(_LRUCache[key]);
                 }
                 else
                 {
@@ -69,8 +66,8 @@ namespace LRUCache.Implementation
 
         public string CacheFeed()
         {
-            var headReference = _head; 
-            
+            var headReference = _head;
+
             List<string> items = new List<string>();
 
             while (headReference != null)
@@ -91,8 +88,12 @@ namespace LRUCache.Implementation
 
         private void MakeMostRecentlyUsed(Node<V, K> foundItem)
         {
+            if (foundItem == _head)
+            {
+                return;
+            }
             // Newly inserted item bring to the top
-            if (foundItem.Next == null && foundItem.Previous == null)
+            else if (foundItem.Next == null && foundItem.Previous == null)
             {
                 foundItem.Next = _head;
                 _head.Previous = foundItem;
@@ -117,7 +118,6 @@ namespace LRUCache.Implementation
                 _head.Previous = foundItem;
                 _head = foundItem;
             }
-            // Last case would be to check if it is a head but if it is than there is no need to bring it to the top
         }
     }
 }
